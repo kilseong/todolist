@@ -38,7 +38,9 @@ body{
 .task{
   display: flex;
   justify-content: space-between;
-  padding: 5px;
+  width: 100%;
+  border-bottom: 1px solid lightgray;
+  position: relative;
 }
 
 .task-done{
@@ -47,4 +49,34 @@ body{
 
 .task-tabs div{
   cursor : pointer;
+}
+
+.button-box {
+  display: flex;
+}
+
+.button-box button {
+  height: 100%;
+  border: none;
+  width: 5em;
+  margin: 0;
+  background-color: white;
+  transition: 0.5s;
+}
+.button-box button :active {
+  position: relative;
+  top: 2px;
+}
+
+.button-box button:first-child:hover {
+  background-color: greenyellow;
+}
+.button-box button:nth-child(2):hover {
+  background-color: rgb(255, 0, 0, 0.3);
+}
+
+.task-done {
+  text-decoration: line-through;
+  background-color: lightgray;
+  transition: 0.5s;
 }

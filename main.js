@@ -12,6 +12,11 @@
 //진행중 탭에서 삭제시 UI에서 안보이게 하기
 //토글 버튼
 
+// 1.check와 delete가 아이콘이어야 함--완료!!
+// 2.check버튼 클릭시 뒤에 배경이 회색으로 바뀌어야함--
+// 3.check버튼 클릭 후 되돌리기 버튼이 나오고 클릭하면 뒤에 배경이 다시 돌아오고 버튼도 다시 체크로 바꿈
+// 4.삭제기능이 있어야함
+
 let taskInput = document.getElementById("task-input");
 let addButton = document.getElementById("add-button");
 let underLine = document.getElementById("under-line");
@@ -72,23 +77,27 @@ function render(){
   }
   // 2. 리스트를 달리 보여준다
 
+  {/* <i class="fa-solid fa-check"></i>
+<i class="fas fa-solid fa-arrows-rotate"></i> */}
+
   let resultHTML = "";
   for(let i=0; i < list.length; i++){
     if(list[i].isComplete ==  true){
       //console.log("here");
       resultHTML += `<div class="task">
             <div class="task-done">${list[i].taskContent}</div>
-            <div>
-              <button onclick="toggleComplete('${list[i].id}')">Check</button>
-              <button onclick="deleteTask('${list[i].id}')">Delete</button>
+            
+            <div class = "button-box">
+              <button onclick="toggleComplete('${list[i].id}')"><i class="fas fa-undo-alt"></i></button>
+              <button onclick="deleteTask('${list[i].id}')"><i class="fa fa-trash"></i></button>
             </div>
           </div>`
     }else{
       resultHTML += `<div class="task">
             <div>${list[i].taskContent}</div>
-            <div>
-              <button onclick="toggleComplete('${list[i].id}')">Check</button>
-              <button onclick="deleteTask('${list[i].id}')">Delete</button>
+            <div class = "button-box">
+              <button onclick="toggleComplete('${list[i].id}')"><i class="fa fa-check"></i></button>
+              <button onclick="deleteTask('${list[i].id}')"><i class="fa fa-trash"></i></button>
             </div>
           </div>`; 
     }
