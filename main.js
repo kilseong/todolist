@@ -13,7 +13,7 @@
 //토글 버튼
 
 // 1.check와 delete가 아이콘이어야 함--완료!!
-// 2.check버튼 클릭시 뒤에 배경이 회색으로 바뀌어야함--
+// 2.check버튼 클릭시 뒤에 배경이 회색으로 바뀌어야함-- 어째든 완료
 // 3.check버튼 클릭 후 되돌리기 버튼이 나오고 클릭하면 뒤에 배경이 다시 돌아오고 버튼도 다시 체크로 바꿈
 // 4.삭제기능이 있어야함
 
@@ -85,8 +85,7 @@ function render(){
     if(list[i].isComplete ==  true){
       //console.log("here");
       resultHTML += `<div class="task">
-            <div class="task-done">${list[i].taskContent}</div>
-            
+          <div class="task task-done">${list[i].taskContent}</div>
             <div class = "button-box">
               <button onclick="toggleComplete('${list[i].id}')"><i class="fas fa-undo-alt"></i></button>
               <button onclick="deleteTask('${list[i].id}')"><i class="fa fa-trash"></i></button>

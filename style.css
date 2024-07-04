@@ -41,10 +41,7 @@ body{
   width: 100%;
   border-bottom: 1px solid lightgray;
   position: relative;
-}
-
-.task-done{
-  text-decoration: line-through;
+  
 }
 
 .task-tabs div{
