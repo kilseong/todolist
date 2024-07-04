@@ -18,12 +18,12 @@
 // 3.check버튼 클릭 후 되돌리기 버튼이 나오고 클릭하면 뒤에 배경이 다시 돌아오고 버튼도 다시 체크로 바꿈 -- 완료!!
 // 4.삭제기능이 있어야함
 
-// 1. 할일을 입력하고 나면 입력창이 자동으로 비워짐
-// 2. 엔터를 통해 할일을 입력할 수 있음
+// 1. 할일을 입력하고 나면 입력창이 자동으로 비워짐--완료
+// 2. 엔터를 통해 할일을 입력할 수 있음--완료
 // 3. 입력한 할일이 없다면 할일 추가가 안됨 (즉 비어있는 할일 추가가 안됨)--완료
-// 4. tab에 슬라이드바 또는 내가 어떤 탭에 있는지 표시가 되어야함
+// 4. tab에 슬라이드바 또는 내가 어떤 탭에 있는지 표시가 되어야함--완료
 // 5. 진행중 또는 완료 탭에서 체크 버튼을 클릭하면 상태에 맞게 바로 사라지거나 다른 탭에 보여야 한다
-// 6. 진행중 또는 끝남 탭에서 아이템을 삭제하면 바로 UI에 적용이 되어야 함
+// 6. 진행중 또는 끝남 탭에서 아이템을 삭제하면 바로 UI에 적용이 되어야 함 --완료
 // 7. 기본 스타일이아닌 할일앱이 꾸며져 있어야함 + 모바일까지 반드시 되어있어야함--완료
 
 
@@ -35,8 +35,11 @@ let btnAll = document.querySelectorAll(".btn-all");
 let btnIng = document.querySelectorAll(".btn-ing");
 let btnEnd = document.querySelectorAll(".btn-end");
 
+// 현재 날짜 불러오기
+//document.getElementById('date').textContent = moment().format('YYYY-MM-DD');
+
 let taskList =[];
-let mode = 'all';
+let mode = "all";
 let filterList = [];
 //console.log("add-button");
 addButton.addEventListener("click",addTask);
@@ -48,7 +51,7 @@ taskInput.addEventListener("keydown", function (event) {
 });
 
 // task-tabs div.forEach((menu) =>
-//   menu.addEventListener("click", (e) => horiZon(e))
+//   menu.addEventListener("click", (event) => horiZon(e))
 // );
 
 // function horiZon(e) {
@@ -60,15 +63,9 @@ taskInput.addEventListener("keydown", function (event) {
 
 for(let i=1; i < tabs.length; i++){
   tabs[i].addEventListener("click", function(event){filter(event);
-
     });
 }
 console.log(tabs);
-
-
-
-
-
 
 function addTask(){
   //console.log("clicked");
@@ -82,9 +79,9 @@ function addTask(){
   };
   
   taskList.push(task); //taskList.push(taskContent); task객체를 사용하여 변경
-  taskInput.value = "";
-  console.log(taskList);
   render();
+  console.log(taskList);
+  
 }
 
 function render(){
@@ -120,7 +117,7 @@ function render(){
           </div>`; 
     }
 
-
+    taskInput.value = "";
       // resultHTML += `<div class="task">
       //       <div>${taskList[i].taskContent}</div>
       //       <div>
@@ -142,7 +139,7 @@ function toggleComplete(id){
       break;
     }
   }
-  render();
+  filter();
   console.log(taskList);
   //console.log("check됐음");
 
@@ -185,7 +182,7 @@ function deleteTask(id){
 
 function filter(event){
   //console.log("filter", event.target.id);
-  mode = event.target.id;
+
   if (event) {
     mode = event.target.id;
     underLine.style.width = event.target.offsetWidth + "px";
@@ -195,6 +192,7 @@ function filter(event){
   } // 진행중 상태에서 끝남으로 표시하면 바로 사라지는 부분은 event가 없음 그래서 조건추가
 
   filterList = [];
+
   if(mode === "all"){
     //전체 리스트를 보여준다
     render();
@@ -204,7 +202,9 @@ function filter(event){
     for(let i=0; i < taskList.length; i++){
       if(taskList[i].isComplete === false){
         filterList.push(taskList[i]);
+      
       }
+      
     } 
     render();
     console.log("진행중", filterList);
@@ -214,11 +214,13 @@ function filter(event){
     for(let i=0; i < taskList.length; i++){
       if(taskList[i].isComplete === true){
         filterList.push(taskList[i]);
+        
       }
+     
     }
-    
+    render();
   }
-  render();
+  
 }
 
 
