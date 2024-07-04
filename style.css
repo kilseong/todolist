@@ -145,7 +145,7 @@ input:focus {
 
 @media (max-width:600px) {
   .task-box{
-    width: 400px;
+    width: 300px;
     height: 25px;
     border-top: none;
     border-left: none;
