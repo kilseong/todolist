@@ -13,8 +13,9 @@
 //토글 버튼
 
 // 1.check와 delete가 아이콘이어야 함--완료!!
-// 2.check버튼 클릭시 뒤에 배경이 회색으로 바뀌어야함-- 어째든 완료
-// 3.check버튼 클릭 후 되돌리기 버튼이 나오고 클릭하면 뒤에 배경이 다시 돌아오고 버튼도 다시 체크로 바꿈
+// 2.check버튼 클릭시 뒤에 배경이 회색으로 바뀌어야함 -- 완료!! 
+//   (아래 조건문에 스타일이 겹치지 않게 class 명을 수정)
+// 3.check버튼 클릭 후 되돌리기 버튼이 나오고 클릭하면 뒤에 배경이 다시 돌아오고 버튼도 다시 체크로 바꿈 -- 완료!!
 // 4.삭제기능이 있어야함
 
 let taskInput = document.getElementById("task-input");
@@ -27,8 +28,6 @@ let mode = 'all';
 let filterList = [];
 //console.log("add-button");
 addButton.addEventListener("click",addTask);
-
-
 
 // task-tabs div.forEach((menu) =>
 //   menu.addEventListener("click", (e) => horiZon(e))
@@ -67,6 +66,7 @@ function addTask(){
 
 function render(){
   // 1. 내가 선택한 탭에 따라서
+  let resultHTML = "";
   let list = [];
   if(mode === "all"){
     list = taskList;
@@ -76,16 +76,12 @@ function render(){
   // ongoing, done = filterList
   }
   // 2. 리스트를 달리 보여준다
-
-  {/* <i class="fa-solid fa-check"></i>
-<i class="fas fa-solid fa-arrows-rotate"></i> */}
-
-  let resultHTML = "";
+ 
   for(let i=0; i < list.length; i++){
     if(list[i].isComplete ==  true){
       //console.log("here");
       resultHTML += `<div class="task">
-          <div class="task task-done">${list[i].taskContent}</div>
+          <div class="task task-done">${list[i].taskContent}</div> 
             <div class = "button-box">
               <button onclick="toggleComplete('${list[i].id}')"><i class="fas fa-undo-alt"></i></button>
               <button onclick="deleteTask('${list[i].id}')"><i class="fa fa-trash"></i></button>
@@ -127,19 +123,41 @@ function toggleComplete(id){
   console.log(taskList);
   //console.log("check됐음");
 
-
 }
 
 function deleteTask(id){
-  for(let i=0; i < taskList.length; i++){
-    if(taskList[i].id == id){
-      taskList.splice(i,1)
+  if(mode == "all"){
+    for(let i=0; i<taskList.length; i++){
+      if(taskList[i].id == id){
+        taskList.splice(i,1);
+        break;
+      }
+    }
+    render();
+  }else if(mode == "ongoing" || mode == "done"){
+    for(let i=0; i < filterList.length; i++){
+      if(filterList[i].id == id || taskList[i].id == id){
+        filterList.splice(i,1);
+        for(let i=0; i < taskList.length; i++){
+          if(taskList[i].id == id){
+            taskList.splice(i,1);
+            break;
+        }
+      }
       break;
     }
   }
   render();
+  // for(let i=0; i < taskList.length; i++){
+  //   if(taskList[i].id == id){
+  //     taskList.splice(i,1)
+  //     break;
+  //   }
+  // }
+  // render();
   //console.log(taskList); 결과값이 제대로 나오면 UI도 반드시 반영해준다.
   //console.log("삭제하자",id);
+ }
 }
 
 function filter(event){
@@ -175,8 +193,9 @@ function filter(event){
         filterList.push(taskList[i]);
       }
     }
-    render();
+    
   }
+  render();
 }
 
 
