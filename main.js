@@ -41,6 +41,12 @@ let filterList = [];
 //console.log("add-button");
 addButton.addEventListener("click",addTask);
 
+taskInput.addEventListener("keydown", function (event) {
+  if (event.keyCode === 13) {
+    addTask(event);
+  }
+});
+
 // task-tabs div.forEach((menu) =>
 //   menu.addEventListener("click", (e) => horiZon(e))
 // );
