@@ -49,15 +49,16 @@ input:focus {
   left: 0px;
   top: 52px;
   padding: 0px;
+  transition: 0.5s;
 }
 
 .task{
   display: flex;
   justify-content: space-between;
   width: 100%;
-  border-bottom: 1px solid lightgray;
+  border-bottom: 2px solid lightgreen;
   position: relative;
-  
+  line-height: 50px;
 }
 
 .task-tabs div{
@@ -92,6 +93,7 @@ input:focus {
   text-decoration: line-through;
   background-color: lightgray;
   transition: 0.5s;
+
 }
 
 
@@ -151,6 +153,11 @@ input:focus {
     border-bottom: 3px solid green;
     margin: 5px;
   }
-  
+
+  .task{
+
+    border-bottom: 2px solid blueviolet;
+
+  }
 
 }
