@@ -22,7 +22,8 @@
 // 2. 엔터를 통해 할일을 입력할 수 있음--완료
 // 3. 입력한 할일이 없다면 할일 추가가 안됨 (즉 비어있는 할일 추가가 안됨)--완료
 // 4. tab에 슬라이드바 또는 내가 어떤 탭에 있는지 표시가 되어야함--완료
-// 5. 진행중 또는 완료 탭에서 체크 버튼을 클릭하면 상태에 맞게 바로 사라지거나 다른 탭에 보여야 한다
+// 5. 진행중 또는 완료 탭에서 체크 버튼을 클릭하면 상태에 맞게 바로 사라지거나 다른 탭에 보여야 한다--완료
+// -----변수 지정을 전역이나 지역이냐에 따라 보여지는 UI값이 달라짐
 // 6. 진행중 또는 끝남 탭에서 아이템을 삭제하면 바로 UI에 적용이 되어야 함 --완료
 // 7. 기본 스타일이아닌 할일앱이 꾸며져 있어야함 + 모바일까지 반드시 되어있어야함--완료
 
@@ -34,8 +35,10 @@ let tabs = document.querySelectorAll(".task-tabs div");
 let btnAll = document.querySelectorAll(".btn-all");
 let btnIng = document.querySelectorAll(".btn-ing");
 let btnEnd = document.querySelectorAll(".btn-end");
+let buttons = document.querySelectorAll(".task-tabs button");
+//let dates = document.getElementById("date");
 
-// 현재 날짜 불러오기
+//현재 날짜 불러오기
 //document.getElementById('date').textContent = moment().format('YYYY-MM-DD');
 
 let taskList =[];
@@ -66,6 +69,12 @@ for(let i=1; i < tabs.length; i++){
     });
 }
 console.log(tabs);
+
+for(let i=0; i < buttons.length; i++){
+  buttons[i].addEventListener("click", function(event){
+    filter(event);
+  });
+}
 
 function addTask(){
   //console.log("clicked");
